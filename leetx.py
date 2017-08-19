@@ -1,4 +1,4 @@
-#VERSION: 1.1
+#VERSION: 1.2
 #AUTHORS: Vikas Yadav (https://github.com/v1k45 | http://v1k45.com)
 
 # Redistribution and use in source and binary forms, with or without
@@ -109,7 +109,7 @@ class LeetxParser(HTMLParser):
 
 
 PAGINATION_PATTERN = re.compile('<li class="last"><a href="/search/(.*)/([0-9])/">Last</a></li>')  # noqa
-DOWNLOAD_PATTERN = re.compile('<a class\="(.*) btn-torrent-mirror-download" target\="_blank" href\="(.*)"><span class\="icon"><i class\="flaticon-torrent-download"></i></span>ITORRENTS MIRROR</a>')  # noqa
+DOWNLOAD_PATTERN = re.compile('<a class\="(.*) btn-(.*)" target\="_blank" href\="(.*)"><span class\="icon"><i class\="flaticon-torrent-download"></i></span>ITORRENTS MIRROR</a>')  # noqa
 
 
 class leetx(object):
@@ -132,7 +132,7 @@ class leetx(object):
         torrent_page = retrieve_url(info)
         torrent_link_match = DOWNLOAD_PATTERN.search(torrent_page)
         if torrent_link_match and torrent_link_match.groups():
-            torrent_file = torrent_link_match.groups()[1].replace("http", "https")  # noqa
+            torrent_file = torrent_link_match.groups()[2].replace("http", "https")  # noqa
             print(download_file(torrent_file))
         else:
             print('')

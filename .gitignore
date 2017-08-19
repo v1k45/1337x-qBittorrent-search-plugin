@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# exclude nova3 test module
+nova3/
+nova/
